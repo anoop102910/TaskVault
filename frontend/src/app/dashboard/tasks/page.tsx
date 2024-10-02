@@ -12,16 +12,15 @@ import Error from "@/components/shared/Error";
 
 const TaskPage = () => {
   const { projectId, status, priority } = useFilter();
-  const { tasks , isLoading, error} = useTasks({ projectId, status, priority });
+  const { tasks, isLoading, error } = useTasks({ projectId, status, priority });
   const { layout } = useTaskLayout();
   if (isLoading) return layout === "list" ? <TaskListSkeleton /> : <TaskTableViewSkeleton />;
   if (error) return <Error />;
-  if(!tasks) return <TaskEmpty />;
-  if (tasks.length == 0) return <TaskEmpty />;
+  if (!tasks) return <TaskEmpty />;
+
   return (
     <div>
-      <Navbar />
-        {layout == "list" ? <TaskListView tasks={tasks!} /> : <TaskTableView tasks={tasks!} />}
+      {layout == "list" ? <TaskListView tasks={tasks!} /> : <TaskTableView tasks={tasks!} />}
     </div>
   );
 };
@@ -38,9 +37,7 @@ const TaskListSkeleton = () => {
 };
 
 const TaskTableViewSkeleton = () => {
-  return (
-    <TableSkeleton rows={4} cols={4} />
-  );
+  return <TableSkeleton rows={4} cols={4} />;
 };
 
 const TaskEmpty = () => {
@@ -50,6 +47,5 @@ const TaskEmpty = () => {
     </div>
   );
 };
-
 
 export default TaskPage;

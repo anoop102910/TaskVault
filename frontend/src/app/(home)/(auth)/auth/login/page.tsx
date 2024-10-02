@@ -86,7 +86,7 @@ function LoginForm() {
               <Button
                 onClick={() => {
                   setFormData({
-                    email: "anoop10@gmail.com",
+                    email: "anoop@gmail.com",
                     password: "welcome",
                   });
                 }}
@@ -97,7 +97,7 @@ function LoginForm() {
               <Button
                 onClick={() => {
                   setFormData({
-                    email: "manish@gmail.com",
+                    email: "mayank@gmail.com",
                     password: "welcome",
                   });
                 }}

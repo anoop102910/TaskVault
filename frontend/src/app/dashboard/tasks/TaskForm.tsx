@@ -60,7 +60,6 @@ const AddNewTaskForm: React.FC<AddNewTaskFormProps> = ({ isUpdate, setIsOpen, ta
   const { mutate } = useSWRConfig();
 
   useEffect(() => {
-    console.log(isUpdate, task);
     if (isUpdate && task) {
       setFormData({
         title: task.title!,

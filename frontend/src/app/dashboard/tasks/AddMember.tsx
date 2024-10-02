@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import SelectUser from "../../../components/shared/SelectUser";
 import { useUsers } from "@/lib/services/user";
