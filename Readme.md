@@ -25,6 +25,15 @@
 - **Task Tracking:**  
   View and update task progress and due dates.
 
+![Task Management Website](demo1.png)
+![Task Management Website](demo2.png)
+![Task Management Website](demo3.png)
+![Task Management Website](demo4.png)
+![Task Management Website](demo5.png)
+![Task Management Website](demo6.png)
+![Task Management Website](demo7.png)
+![Task Management Website](demo8.png)
+![Task Management Website](demo9.png)
 ## Installation
 
 ### Backend
