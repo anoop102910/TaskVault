@@ -2,6 +2,7 @@
 
 **Task Management Website** is a platform designed for efficient project and task management. It allows administrators to create teams, assign projects and tasks, and manage team members’ workloads. Built with Node.js, Express, and MongoDB, it provides a user-friendly interface for managing tasks and projects.
 
+[Demo](https://task-vault-102910.vercel.app/)  | [Watch the Video](https://youtu.be/BA0z_t0CmmY)
 ## Tech Stack
 
 - **Backend:** Node.js, Express
