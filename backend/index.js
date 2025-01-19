@@ -34,6 +34,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/',(req,res)=>{
+  res.send('Welcome to Task Manager API')
+})
+
 app.use("/api/teams", teamRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
