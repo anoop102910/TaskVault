@@ -1,0 +1,35 @@
+name: Deploy Node.js Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            REPO_DIR="/home/ubuntu/projects/task-vault"
+            if [ ! -d "$REPO_DIR" ]; then
+              mkdir -p "$REPO_DIR"
+              cd "$REPO_DIR"
+              git clone https://github.com/${{ github.repository }}.git .
+            else
+              cd "$REPO_DIR"
+              git fetch origin
+              git reset --hard origin/main
+            fi
+            cd backend
+            echo "${{ secrets.ENV_FILE }}" > .env
+            npm install
+            npm run build
+            pm2 stop task-vault || true
+            pm2 start npm --name "task-vault" -- start
