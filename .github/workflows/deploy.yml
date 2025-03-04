@@ -31,9 +31,10 @@ jobs:
             echo "${{ secrets.ENV_FILE }}" | base64 --decode > .env
             npm install
             npm run build
-            
-            # Use pm2 to manage the process
-            pm2 delete task-vault || true
-            pm2 start npm --name "task-vault" -- run start
-            pm2 save
-            pm2 restart task-vault
+          
+            # Kill existing process
+            pkill -f "node backend/index.js" || true
+          
+            # Start in the background
+            nohup npm start > output.log 2>&1 &
+
