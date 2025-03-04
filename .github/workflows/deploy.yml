@@ -31,5 +31,5 @@ jobs:
             echo "${{ secrets.ENV_FILE }}" > .env
             npm install
             npm run build
-            pm2 stop task-vault || true
-            pm2 start npm --name "task-vault" -- start
+            sudo pm2 stop task-vault || true
+            sudo pm2 start npm --name "task-vault" -- start
