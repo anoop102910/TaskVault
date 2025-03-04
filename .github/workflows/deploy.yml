@@ -19,22 +19,19 @@ jobs:
           script: |
             REPO_DIR="/home/ubuntu/projects/task-vault"
             if [ ! -d "$REPO_DIR" ]; then
-              mkdir -p "$REPO_DIR"
               git clone https://github.com/${{ github.repository }}.git "$REPO_DIR"
-            else
-              cd "$REPO_DIR"
-              git fetch origin
-              git reset --hard origin/main
             fi
-            
+
+            cd "$REPO_DIR"
+            git pull origin main
+
             cd backend
-            echo "${{ secrets.ENV_FILE }}" | base64 --decode > .env
+            echo "${{ secrets.ENV_FILE }}" | base64 -d > .env
+
             npm install
             npm run build
-          
-            # Kill existing process
-            pkill -f "node backend/index.js" || true
-          
-            # Start in the background
-            nohup npm start > output.log 2>&1 &
 
+            # Restart process using pm2
+            pm2 delete task-vault || true
+            pm2 start npm --name "task-vault" -- start
+            pm2 save
